@@ -9,7 +9,8 @@
 
 ## Summary
 
-This is a sample [Kitura](https://github.com/IBM-Swift/Kitura) application. See instructions for [Installation on OS X ](https://github.com/IBM-Swift/Kitura#installation-os-x) or [Installation on Linux](https://github.com/IBM-Swift/Kitura#installation-linux-apt-based).
+This is a sample [Kitura](https://github.com/IBM-Swift/Kitura) application that uses [Stencil template engine](https://github.com/kylef/Stencil).
+See instructions for [Installation on OS X ](https://github.com/IBM-Swift/Kitura#installation-os-x) or [Installation on Linux](https://github.com/IBM-Swift/Kitura#installation-linux-apt-based).
 
 ## Build and run
 1. `make run`
