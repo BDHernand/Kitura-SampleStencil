@@ -22,6 +22,10 @@ Kitura-CI/build/Makefile:
 	git submodule init
 	git submodule update --remote --merge
 
+run: build
+	@echo --- Invoking KituraSample executable
+	./.build/debug/KituraSample
+
 custombuild:
 	if [ ! -a Packages/PathKit* -o !  -a Packages/Stencil* ]; then swift build --fetch; fi
 	rm -rf Packages/PathKit*/Tests/Fixtures
