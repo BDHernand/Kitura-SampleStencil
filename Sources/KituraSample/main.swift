@@ -29,7 +29,7 @@ import HeliumLogger
 
 import Foundation
 
-import KituraMustache
+import KituraStencil
 
 
 // All Web apps need a router to define routes
@@ -135,27 +135,20 @@ router.get("/users/:user") { request, response, next in
     next()
 }
 
-// Example using templating of strings
-// Support for Mustache implented for OSX only yet
-router.setTemplateEngine(MustacheTemplateEngine())
+router.setTemplateEngine(StencilTemplateEngine())
 
 router.get("/document") { _, response, next in
     defer {
         next()
     }
     do {
-        // the example from https://github.com/groue/GRMustache.swift/blob/master/README.md
+        // the example from https://github.com/kylef/Stencil
         var context: [String: Any] = [
-            "name": "Arthur",
-            "date": NSDate(),
-            "realDate": NSDate().dateByAddingTimeInterval(60*60*24*3),
-            "late": true
+            "articles": [
+                [ "title": "Migrating from OCUnit to XCTest", "author": "Kyle Fuller" ],
+                [ "title": "Memory Management with ARC", "author": "Kyle Fuller" ],
+            ]
         ]
-
-        // Let template format dates with `{{format(...)}}`
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
-        context["format"] = dateFormatter
 
         try response.render("document", context: context).end()
     } catch {
