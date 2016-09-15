@@ -25,9 +25,8 @@ let package = Package(
         )
     ],
     dependencies: [
-        .Package(url: "https://github.com/IBM-Swift/Kitura.git", majorVersion: 0, minor: 13),
-        .Package(url: "https://github.com/IBM-Swift/HeliumLogger.git", majorVersion: 0, minor: 7),
-        .Package(url: "https://github.com/IBM-Swift/LoggerAPI.git", majorVersion: 0, minor: 7),
-        .Package(url: "https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git",majorVersion: 0, minor: 13),
+        .Package(url: "https://github.com/IBM-Swift/Kitura.git", majorVersion: 0, minor: 32),
+        .Package(url: "https://github.com/IBM-Swift/HeliumLogger.git", majorVersion: 0, minor: 17),
+        .Package(url: "https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git",majorVersion: 0, minor: 32),
     ],
-    exclude: ["Makefile", "Kitura-CI"])
+    exclude: ["Makefile", "Package-Builder"])
