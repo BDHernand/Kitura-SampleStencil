@@ -24,8 +24,3 @@ Package-Builder/build/Makefile:
 run: build
 	@echo --- Invoking KituraSample executable
 	./.build/debug/KituraSample
-
-custombuild:
-	if [ ! -a Packages/PathKit* -o !  -a Packages/Stencil* ]; then swift build --fetch; fi
-	rm -rf Packages/PathKit*/Tests/Fixtures
-	rm -rf Packages/Stencil*/Tests/Fixtures
