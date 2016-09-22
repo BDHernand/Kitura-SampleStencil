@@ -18,7 +18,6 @@
 
 import Foundation
 
-import KituraSys
 import KituraNet
 import Kitura
 import KituraStencil
@@ -41,7 +40,7 @@ Log.logger = HeliumLogger()
  * such as authentication and other routing
  */
 class BasicAuthMiddleware: RouterMiddleware {
-    func handle(request: RouterRequest, response: RouterResponse, next: () -> Void) {
+    func handle(request: RouterRequest, response: RouterResponse,  next: @escaping () -> Void) {
         let authString = request.headers["Authorization"]
         Log.info("Authorization: \(authString)")
         // Check authorization string in database to approve the request if fail
@@ -123,7 +122,7 @@ router.get("/redir") { _, response, next in
 // Accepts user as a parameter
 router.get("/users/:user") { request, response, next in
     response.headers["Content-Type"] = "text/plain; charset=utf-8"
-    let p1 = request.params["user"] ?? "(nil)"
+    let p1 = request.parameters["user"] ?? "(nil)"
     do {
         try response.status(.OK).send(
             "<!DOCTYPE html><html><body>" +
@@ -165,7 +164,7 @@ router.error { request, response, next in
     }
 }
 
-router.setDefaultTemplateEngine(templateEngine: StencilTemplateEngine())
+router.setDefault(templateEngine: StencilTemplateEngine())
 router.get("/document") { _, response, next in
     defer {
         next()
@@ -189,7 +188,7 @@ router.get("/document") { _, response, next in
 router.all { request, response, next in
     if  response.statusCode == .notFound  {
         // Remove this wrapping if statement, if you want to handle requests to / as well
-        if  request.originalUrl != "/"  &&  request.originalUrl != ""  {
+        if  request.originalURL != "/"  &&  request.originalURL != ""  {
             do {
                 try response.send("Route not found in Sample application!").end()
             }
@@ -201,6 +200,8 @@ router.all { request, response, next in
     next()
 }
 
-// Listen on port 8090
-let server = HTTPServer.listen(port: 8090, delegate: router)
-Server.run()
+// Add HTTP Server to listen on port 8090
+Kitura.addHTTPServer(onPort: 8090, with: router)
+
+// start the framework - the servers added until now will start listening
+Kitura.run()
