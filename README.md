@@ -7,6 +7,9 @@
 
 **Sample application for Kitura Web Framework**
 
+# Deprected
+See [Kitura-Sample](https://github.com/IBM-Swift/Kitura-Sample) for example of using both Stencil and GRMoustache template engines.
+
 ## Summary
 
 This is a sample [Kitura](https://github.com/IBM-Swift/Kitura) application that uses [Stencil template engine](https://github.com/kylef/Stencil).
